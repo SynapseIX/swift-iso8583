@@ -14,6 +14,14 @@
 		6C9E4F841AB4D77C00E0F55E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C9E4F821AB4D77C00E0F55E /* LaunchScreen.xib */; };
 		6C9E4F901AB4D77C00E0F55E /* Swift_ISO8583Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9E4F8F1AB4D77C00E0F55E /* Swift_ISO8583Tests.swift */; };
 		6C9E4F9D1AB4EB8300E0F55E /* ISOMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9E4F9C1AB4EB8300E0F55E /* ISOMessage.swift */; };
+		6C9E4F9F1AB6159A00E0F55E /* ISOBitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9E4F9E1AB6159A00E0F55E /* ISOBitmap.swift */; };
+		6C9E4FA11AB615C200E0F55E /* ISODataElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9E4FA01AB615C200E0F55E /* ISODataElement.swift */; };
+		6C9E4FA31AB615DB00E0F55E /* ISOHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9E4FA21AB615DB00E0F55E /* ISOHelper.swift */; };
+		6C9E4FA91AB6162600E0F55E /* customisoconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9E4FA41AB6162600E0F55E /* customisoconfig.plist */; };
+		6C9E4FAA1AB6162600E0F55E /* customisoMTI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9E4FA51AB6162600E0F55E /* customisoMTI.plist */; };
+		6C9E4FAB1AB6162600E0F55E /* isoconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9E4FA61AB6162600E0F55E /* isoconfig.plist */; };
+		6C9E4FAC1AB6162600E0F55E /* isodatatypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9E4FA71AB6162600E0F55E /* isodatatypes.plist */; };
+		6C9E4FAD1AB6162600E0F55E /* isoMTI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9E4FA81AB6162600E0F55E /* isoMTI.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +46,14 @@
 		6C9E4F8E1AB4D77C00E0F55E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6C9E4F8F1AB4D77C00E0F55E /* Swift_ISO8583Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift_ISO8583Tests.swift; sourceTree = "<group>"; };
 		6C9E4F9C1AB4EB8300E0F55E /* ISOMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISOMessage.swift; sourceTree = "<group>"; };
+		6C9E4F9E1AB6159A00E0F55E /* ISOBitmap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISOBitmap.swift; sourceTree = "<group>"; };
+		6C9E4FA01AB615C200E0F55E /* ISODataElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISODataElement.swift; sourceTree = "<group>"; };
+		6C9E4FA21AB615DB00E0F55E /* ISOHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISOHelper.swift; sourceTree = "<group>"; };
+		6C9E4FA41AB6162600E0F55E /* customisoconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = customisoconfig.plist; sourceTree = "<group>"; };
+		6C9E4FA51AB6162600E0F55E /* customisoMTI.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = customisoMTI.plist; sourceTree = "<group>"; };
+		6C9E4FA61AB6162600E0F55E /* isoconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = isoconfig.plist; sourceTree = "<group>"; };
+		6C9E4FA71AB6162600E0F55E /* isodatatypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = isodatatypes.plist; sourceTree = "<group>"; };
+		6C9E4FA81AB6162600E0F55E /* isoMTI.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = isoMTI.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +135,14 @@
 			isa = PBXGroup;
 			children = (
 				6C9E4F9C1AB4EB8300E0F55E /* ISOMessage.swift */,
+				6C9E4F9E1AB6159A00E0F55E /* ISOBitmap.swift */,
+				6C9E4FA01AB615C200E0F55E /* ISODataElement.swift */,
+				6C9E4FA21AB615DB00E0F55E /* ISOHelper.swift */,
+				6C9E4FA41AB6162600E0F55E /* customisoconfig.plist */,
+				6C9E4FA51AB6162600E0F55E /* customisoMTI.plist */,
+				6C9E4FA61AB6162600E0F55E /* isoconfig.plist */,
+				6C9E4FA71AB6162600E0F55E /* isodatatypes.plist */,
+				6C9E4FA81AB6162600E0F55E /* isoMTI.plist */,
 			);
 			path = "ISO-8583 Lib";
 			sourceTree = "<group>";
@@ -206,6 +230,11 @@
 				6C9E4F7F1AB4D77C00E0F55E /* Main.storyboard in Resources */,
 				6C9E4F841AB4D77C00E0F55E /* LaunchScreen.xib in Resources */,
 				6C9E4F811AB4D77C00E0F55E /* Images.xcassets in Resources */,
+				6C9E4FAD1AB6162600E0F55E /* isoMTI.plist in Resources */,
+				6C9E4FA91AB6162600E0F55E /* customisoconfig.plist in Resources */,
+				6C9E4FAB1AB6162600E0F55E /* isoconfig.plist in Resources */,
+				6C9E4FAA1AB6162600E0F55E /* customisoMTI.plist in Resources */,
+				6C9E4FAC1AB6162600E0F55E /* isodatatypes.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,7 +253,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C9E4F7C1AB4D77C00E0F55E /* ViewController.swift in Sources */,
+				6C9E4FA31AB615DB00E0F55E /* ISOHelper.swift in Sources */,
 				6C9E4F9D1AB4EB8300E0F55E /* ISOMessage.swift in Sources */,
+				6C9E4F9F1AB6159A00E0F55E /* ISOBitmap.swift in Sources */,
+				6C9E4FA11AB615C200E0F55E /* ISODataElement.swift in Sources */,
 				6C9E4F7A1AB4D77C00E0F55E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
