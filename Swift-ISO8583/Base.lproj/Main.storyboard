@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Swift_ISO8583" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Da-c1-LgX">
+                                <rect key="frame" x="160" y="28" width="281" height="48"/>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="29"/>
+                                <state key="normal" title="JORGETAPIA.NET">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToWebsite:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fKz-bE-03k"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZH-JG-Ixj">
+                                <rect key="frame" x="205" y="510" width="190" height="70"/>
+                                <state key="normal" image="GitHub">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToRepoWebsite:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Ta-Tn-yxu"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="281" translatesAutoresizingMaskIntoConstraints="NO" id="kO3-Gd-xOB">
+                                <rect key="frame" x="164.5" y="231.5" width="271.5" height="137.5"/>
+                                <string key="text">Thank you very much for using Swift-ISO8583. An open-source project made by Jorge Tapia and released under the MIT license. Please check the usage examples in the AppDelegate.swift file and watch your console log.</string>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.031372549020000001" green="0.65098039220000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="kO3-Gd-xOB" secondAttribute="centerX" id="3A9-4z-YMf"/>
+                            <constraint firstAttribute="centerX" secondItem="3Da-c1-LgX" secondAttribute="centerX" constant="-0.5" id="OI5-eN-LP1"/>
+                            <constraint firstAttribute="centerX" secondItem="3Da-c1-LgX" secondAttribute="centerX" constant="139.5" id="gtM-Y4-SH5"/>
+                            <constraint firstAttribute="centerY" secondItem="kO3-Gd-xOB" secondAttribute="centerY" id="kRG-iU-GOA"/>
+                            <constraint firstItem="3Da-c1-LgX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="nzG-nV-B2x"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="xZH-JG-Ixj" secondAttribute="bottom" constant="20" id="q2v-uT-M9h"/>
+                            <constraint firstAttribute="centerX" secondItem="xZH-JG-Ixj" secondAttribute="centerX" id="sIA-nv-VAk"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="gtM-Y4-SH5"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="305" y="546"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="GitHub" width="190" height="70"/>
+    </resources>
+</document>
