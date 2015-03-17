@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+class ISOBitmap {
+    // MARK: Initializers
+    init() {
+    
+    }
+    
+    convenience init?(hexString: String) {
+        self.init()
+    }
+}

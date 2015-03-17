@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        let isoMessage3 = ISOMessage(isoMessage: "0200B2200000001000000000000000800000000123000000000123000000012300012314Value for DE44027This is the value for DE105")
+        
         return true
     }
 
