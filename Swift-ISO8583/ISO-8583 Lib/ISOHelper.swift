@@ -165,7 +165,7 @@ class ISOHelper {
             return string
         }
         
-        if (countElements(string!) >= trueLength) {
+        if countElements(string!) >= trueLength {
             return string
         }
         
