@@ -16,7 +16,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        println("***EXAMPLE OF USAGE #1***")
+        
+        /*
+        ISOMessage *isoMessage1 = [[ISOMessage alloc] init];
+        [isoMessage1 setMTI:@"0200"];
+        // Declares the presence of a secondary bitmap and data elements: 3, 4, 7, 11, 44, 105
+        isoMessage1.bitmap = [[ISOBitmap alloc] initWithHexString:@"B2200000001000000000000000800000"];
+        
+        [isoMessage1 addDataElement:@"DE03" withValue:@"123"];
+        [isoMessage1 addDataElement:@"DE04" withValue:@"123"];
+        [isoMessage1 addDataElement:@"DE07" withValue:@"123"];
+        [isoMessage1 addDataElement:@"DE11" withValue:@"123"];
+        [isoMessage1 addDataElement:@"DE44" withValue:@"Value for DE44"];
+        [isoMessage1 addDataElement:@"DE105" withValue:@"This is the value for DE105"];
+        
+        NSString *theBuiltMessage = [isoMessage1 buildIsoMessage];
+        NSLog(@"Built message:\n%@", theBuiltMessage);
+        */
+        
+        
         let isoMessage3 = ISOMessage(isoMessage: "0200B2200000001000000000000000800000000123000000000123000000012300012314Value for DE44027This is the value for DE105")
+        println("Hex bitmap 1: \(isoMessage3?.getHexBitmap1())")
+        println("Bin bitmap 1: \(isoMessage3?.getBinaryBitmap1())")
+        println("Hex bitmap 2: \(isoMessage3?.getHexBitmap2())")
         
         return true
     }

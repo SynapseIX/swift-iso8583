@@ -73,7 +73,7 @@ class ISOBitmap {
             return nil
         } else {
             rawValue = hexString
-            isBinary = true
+            isBinary = false
             binaryBitmap = ISOHelper.stringToArray(ISOHelper.hexToBinaryAsString(hexString))
         }
     }
@@ -100,7 +100,6 @@ class ISOBitmap {
                 // mark the data element on the bitmap
                 let index = (dataElement as NSString).substringFromIndex(2).toInt()! - 1
                 bitmapTemplate[index] = "1"
-                
             }
         }
         
