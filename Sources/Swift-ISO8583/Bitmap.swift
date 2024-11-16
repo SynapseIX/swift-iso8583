@@ -98,12 +98,12 @@ public struct Bitmap {
                 return nil
             }
             
-            let indexToUpdate = Int(dataElement.suffix(2))! - 1
+            let indexToUpdate = Int(dataElement.suffix(dataElement.count - 2))! - 1
             bitmapTemplate[indexToUpdate] = "1"
         }
         
         // Check if it has a secondary bitmap (contains DE65...DE128)
-        if givenDataElements.contains(where: { Int($0.suffix(2))! > 63 }) {
+        if givenDataElements.contains(where: { Int($0.suffix($0.count - 2))! > 63 }) {
             bitmapTemplate[0] = "1"
             self.hasSecondaryBitmap = true
         } else {
@@ -127,10 +127,9 @@ public struct Bitmap {
     }
     
     /// Extracts a list of the data elements that are declared in the bitmap.
-    /// - Parameter customConfigFileName: The custom configuration file name for custom ISO-8583 messages.
     /// - Returns: An array of data element names as strings.
-    public func dataElementsInBitmap(customConfigFileName: String? = nil) -> [String] {
-        let pathToConfigFile = customConfigFileName.flatMap { Bundle.main.path(forResource: $0, ofType: "plist") } ?? Bundle.module.path(forResource: "isoconfig", ofType: "plist")
+    public func dataElementsInBitmap() -> [String] {
+        let pathToConfigFile = Bundle.module.path(forResource: "isoconfig", ofType: "plist")
         guard let configFilePath = pathToConfigFile, let dataElementsScheme = NSDictionary(contentsOfFile: configFilePath) else {
             return []
         }
@@ -138,15 +137,11 @@ public struct Bitmap {
         var dataElements: [String] = []
         for (i, bit) in binaryBitmap.enumerated() where bit == "1" {
             let key: String
-            if customConfigFileName == nil {
-                key = i < 9 ? "DE0\(i + 1)" : "DE\(i + 1)"
-            } else {
-                let sortedKeys = dataElementsScheme.allKeys.sorted { (a, b) -> Bool in
-                    guard let strA = a as? String, let strB = b as? String else { return false }
-                    return strA.compare(strB, options: .numeric) == .orderedAscending
-                }
-                key = sortedKeys[i] as? String ?? ""
+            let sortedKeys = dataElementsScheme.allKeys.sorted { (a, b) -> Bool in
+                guard let strA = a as? String, let strB = b as? String else { return false }
+                return strA.compare(strB, options: .numeric) == .orderedAscending
             }
+            key = sortedKeys[i] as? String ?? ""
             
             if dataElementsScheme[key] != nil {
                 dataElements.append(key)

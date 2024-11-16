@@ -18,8 +18,6 @@ let package = Package(
         .target(
             name: "Swift-ISO8583",
             resources: [
-                .process("Resources/customisoconfig.plist"),
-                .process("Resources/customisoMTI.plist"),
                 .process("Resources/isoconfig.plist"),
                 .process("Resources/isodatatypes.plist"),
                 .process("Resources/isoMTI.plist")

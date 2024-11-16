@@ -71,6 +71,39 @@ public struct ISOMessage {
         }
     }
     
+    /// Sets custom configuration files to build and parse custom ISO-8583 messages.
+    /// - Parameters:
+    ///   - customConfigurationFileName: The custom configuration file name with the definition of the expected custom data elements.
+    ///   - customMTIFileName: Configuration file name where custom MTIs are defined.
+    mutating func useCustomConfigurationFile(bundle: Bundle, customConfigurationFileName: String?, customMTIFileName: String?) {
+        guard let customConfigurationFileName = customConfigurationFileName else {
+            print("The customConfigurationFileName cannot be nil.")
+            return
+        }
+        
+        guard let customMTIFileName = customMTIFileName else {
+            print("The customMTIFileName cannot be nil.")
+            return
+        }
+        
+        // Reset config
+        dataElementsScheme = nil
+        dataElements = [:]
+        validMTIs = []
+        
+        if let pathToConfigFile = bundle.path(forResource: customConfigurationFileName, ofType: "plist"),
+           let scheme = NSDictionary(contentsOfFile: pathToConfigFile) {
+            dataElementsScheme = scheme
+            dataElements = [:]
+            usesCustomConfiguration = true
+        }
+        
+        if let pathToMTIConfigFile = bundle.path(forResource: customMTIFileName, ofType: "plist"),
+           let mtiArray = NSArray(contentsOfFile: pathToMTIConfigFile) as? [String] {
+            validMTIs = mtiArray
+        }
+    }
+    
     /// Sets the MTI.
     /// - Parameter mti: The MTI for the message.
     public mutating func setMTI(_ mti: String) {
@@ -86,7 +119,7 @@ public struct ISOMessage {
     ///   - elementName: The data element name.
     ///   - value: The data element value.
     ///   - configFileName: The config file name for custom ISO-8583 messages.
-    public mutating func addDataElement(_ elementName: String, withValue value: String, configFileName: String? = nil) {
+    public mutating func addDataElement(_ elementName: String, withValue value: String) {
         guard let bitmap = bitmap else {
             print("Cannot add data elements without setting the bitmap before.")
             return
@@ -119,7 +152,7 @@ public struct ISOMessage {
             return
         }
         
-        guard let dataElement = DataElement(name: elementName, value: value, dataType: type, length: length, customConfigFileName: configFileName) else {
+        guard let dataElement = DataElement(name: elementName, value: value, dataType: type, length: length) else {
             return
         }
         
@@ -183,11 +216,16 @@ public struct ISOMessage {
             print("The bitmap, data elements, or MTI are missing.")
             return nil
         }
-        
-        let isoMessage = bitmap.dataElementsInBitmap().filter { $0 != "DE01" }.compactMap { dataElement -> String? in
-            return dataElements[dataElement]?.value
-        }.reduce(mti + bitmap.bitmapAsHexString(), +)
-        
+
+        var isoMessage = ""
+        isoMessage.append(mti)
+        isoMessage.append(bitmap.bitmapAsHexString())
+
+        isoMessage += bitmap.dataElementsInBitmap()
+            .filter { $0 != "DE01" }
+            .compactMap { dataElements[$0]?.value }
+            .joined()
+
         return isoMessage
     }
     
@@ -197,7 +235,8 @@ public struct ISOMessage {
         guard let isoMessage = buildIsoMessage() else {
             return nil
         }
-        return "ISO" + isoMessage
+        
+        return "ISO\(isoMessage)"
     }
 }
 

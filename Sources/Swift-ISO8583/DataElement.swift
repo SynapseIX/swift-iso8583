@@ -25,13 +25,11 @@ public struct DataElement {
     ///   - value: The data element value.
     ///   - dataType: The data element data type.
     ///   - length: The data element value length.
-    ///   - customConfigFileName: The custom configuration file name used for custom ISO-8583 messages.
     public init?(
         name: String,
         value: String,
         dataType: String,
-        length: String,
-        customConfigFileName: String? = nil
+        length: String
     ) {
         guard !name.isEmpty else {
             print("The name cannot be nil")
@@ -48,7 +46,7 @@ public struct DataElement {
             return nil
         }
         
-        let pathToConfigFile = customConfigFileName.flatMap { Bundle.main.path(forResource: $0, ofType: "plist") } ?? Bundle.module.path(forResource: "isoconfig", ofType: "plist")
+        let pathToConfigFile = Bundle.module.path(forResource: "isoconfig", ofType: "plist")
         guard let configFilePath = pathToConfigFile, let dataElementsScheme = NSDictionary(contentsOfFile: configFilePath) else {
             print("Invalid configuration file.")
             return nil
