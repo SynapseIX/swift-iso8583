@@ -8,29 +8,29 @@
 import Foundation
 
 /// The ISO-8583 message representation.
-struct ISOMessage {
+public struct ISOMessage {
     /// The scheme that defines the data elements the message expects.
-    var dataElementsScheme: NSDictionary?
+    public var dataElementsScheme: NSDictionary?
     /// The data elements in the message.
-    var dataElements: [String: DataElement] = [:]
+    public var dataElements: [String: DataElement] = [:]
     /// Valid MTIs for the message.
-    var validMTIs: [String] = []
+    public var validMTIs: [String] = []
     /// Determines if a custom configuration should be used.
-    var usesCustomConfiguration = false
+    public var usesCustomConfiguration = false
     /// The message MTI.
-    var mti: String?
+    public var mti: String?
     /// The message bitmap.
-    var bitmap: Bitmap?
+    public var bitmap: Bitmap?
     /// Determines if this message contains a secondary bitmap.
-    var hasSecondaryBitmap = false
+    public var hasSecondaryBitmap = false
     
     /// Initializes a new `ISOMessage` instance with the deafult configuration.
-    init() {
-        if let pathToConfigFile = Bundle.main.path(forResource: "isoconfig", ofType: "plist") {
+    public init() {
+        if let pathToConfigFile = Bundle.module.path(forResource: "isoconfig", ofType: "plist") {
             dataElementsScheme = NSDictionary(contentsOfFile: pathToConfigFile)
         }
         
-        if let pathToMTIConfigFile = Bundle.main.path(forResource: "isoMTI", ofType: "plist"),
+        if let pathToMTIConfigFile = Bundle.module.path(forResource: "isoMTI", ofType: "plist"),
            let mtis = NSArray(contentsOfFile: pathToMTIConfigFile) as? [String] {
             validMTIs = mtis
         }
@@ -38,7 +38,7 @@ struct ISOMessage {
     
     /// Initializes a new `ISOMessage` instance from a string.
     /// - Parameter isoMessage: The message as a string value.
-    init?(isoMessage: String) {
+    public init?(isoMessage: String) {
         guard !isoMessage.isEmpty else {
             print("The isoMessage cannot be nil.")
             return nil
@@ -73,7 +73,7 @@ struct ISOMessage {
     
     /// Sets the MTI.
     /// - Parameter mti: The MTI for the message.
-    mutating func setMTI(_ mti: String) {
+    public mutating func setMTI(_ mti: String) {
         if isMTIValid(mti) {
             self.mti = mti
         } else {
@@ -86,7 +86,7 @@ struct ISOMessage {
     ///   - elementName: The data element name.
     ///   - value: The data element value.
     ///   - configFileName: The config file name for custom ISO-8583 messages.
-    mutating func addDataElement(_ elementName: String, withValue value: String, configFileName: String? = nil) {
+    public mutating func addDataElement(_ elementName: String, withValue value: String, configFileName: String? = nil) {
         guard let bitmap = bitmap else {
             print("Cannot add data elements without setting the bitmap before.")
             return
@@ -131,7 +131,7 @@ struct ISOMessage {
     ///   - isoMessageDataElementValues: The values as a string.
     ///   - dataElements: The data elements.
     /// - Returns: Data element values.
-    func extractDataElementValues(from isoMessageDataElementValues: String, withDataElements dataElements: [String]) -> [String] {
+    public func extractDataElementValues(from isoMessageDataElementValues: String, withDataElements dataElements: [String]) -> [String] {
         var values: [String] = []
         var fromIndex = 0
         
@@ -172,13 +172,13 @@ struct ISOMessage {
     /// Determines if an MTI is valid
     /// - Parameter mti: The MTI.
     /// - Returns: `true` if valid.
-    func isMTIValid(_ mti: String) -> Bool {
+    public func isMTIValid(_ mti: String) -> Bool {
         return validMTIs.contains(mti)
     }
     
     /// Builds the ISO-8583 message as a string.
     /// - Returns: The string representation of the message.
-    func buildIsoMessage() -> String? {
+    public func buildIsoMessage() -> String? {
         guard let bitmap = bitmap, !dataElements.isEmpty, let mti = mti else {
             print("The bitmap, data elements, or MTI are missing.")
             return nil
@@ -193,7 +193,7 @@ struct ISOMessage {
     
     /// Appends the ISO header to the message.
     /// - Returns: A formatted message string prefixed with ISO.
-    func buildIsoMessageWithISOHeader() -> String? {
+    public func buildIsoMessageWithISOHeader() -> String? {
         guard let isoMessage = buildIsoMessage() else {
             return nil
         }

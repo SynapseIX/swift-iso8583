@@ -8,19 +8,19 @@
 import Foundation
 
 /// Represents the bitmap that determines which data elements are present on the ISO-8583 message.
-struct Bitmap {
+public struct Bitmap {
     /// The raw string value of the ISO-8583 message.
-    let rawValue: String
+    public let rawValue: String
     /// Determines if the message has a secondary bitmap.
-    let hasSecondaryBitmap: Bool
+    public let hasSecondaryBitmap: Bool
     ///  Determines if it is a BIN bitmap.
-    let isBinary: Bool
+    public let isBinary: Bool
     /// An array representation of a BIN bitmap.
-    let binaryBitmap: [String]
+    public let binaryBitmap: [String]
     
     /// Initializes a new bitmap instance from a string containing a BIN value.
     /// - Parameter binaryString: The BIN bitmap string.
-    init?(binaryString: String) {
+    public init?(binaryString: String) {
         // Validate if it's a binary number
         let regexPattern = "^[0-1]+$"
         guard let regex = try? NSRegularExpression(pattern: regexPattern),
@@ -46,7 +46,7 @@ struct Bitmap {
     
     /// Initializes a new bitmap instance from a string containing a HEX value.
     /// - Parameter hexString: The HEX bitmap string.
-    init?(hexString: String) {
+    public init?(hexString: String) {
         // Validate if it's a hexadecimal number
         let regexPattern = "^[0-9A-F]+$"
         guard let regex = try? NSRegularExpression(pattern: regexPattern),
@@ -77,9 +77,9 @@ struct Bitmap {
     /// - Parameters:
     ///   - givenDataElements: The data elements that will be present on the bitmap.
     ///   - configFileName: The custom configuration file for custom ISO-8583 messages.
-    init?(givenDataElements: [String], configFileName: String? = nil) {
+    public init?(givenDataElements: [String], configFileName: String? = nil) {
         self.isBinary = true
-        let pathToConfigFile = configFileName.flatMap { Bundle.main.path(forResource: $0, ofType: "plist") } ?? Bundle.main.path(forResource: "isoconfig", ofType: "plist")
+        let pathToConfigFile = configFileName.flatMap { Bundle.main.path(forResource: $0, ofType: "plist") } ?? Bundle.module.path(forResource: "isoconfig", ofType: "plist")
         guard let configFilePath = pathToConfigFile, let dataElementsScheme = NSDictionary(contentsOfFile: configFilePath) else {
             print("Invalid configuration file.")
             return nil
@@ -116,21 +116,21 @@ struct Bitmap {
     
     /// A BIN represnetation of the bitmap.
     /// - Returns: A string containing the bitmap as a BIN value.
-    func bitmapAsBinaryString() -> String {
+    public func bitmapAsBinaryString() -> String {
         return isBinary ? rawValue : (ISOHelper.hexToBinaryAsString(rawValue) ?? "")
     }
     
     /// A HEX represnetation of the bitmap.
     /// - Returns: A string containing the bitmap as a HEX value.
-    func bitmapAsHexString() -> String {
+    public func bitmapAsHexString() -> String {
         return !isBinary ? rawValue : (ISOHelper.binaryToHexAsString(rawValue) ?? "")
     }
     
     /// Extracts a list of the data elements that are declared in the bitmap.
     /// - Parameter customConfigFileName: The custom configuration file name for custom ISO-8583 messages.
     /// - Returns: An array of data element names as strings.
-    func dataElementsInBitmap(customConfigFileName: String? = nil) -> [String] {
-        let pathToConfigFile = customConfigFileName.flatMap { Bundle.main.path(forResource: $0, ofType: "plist") } ?? Bundle.main.path(forResource: "isoconfig", ofType: "plist")
+    public func dataElementsInBitmap(customConfigFileName: String? = nil) -> [String] {
+        let pathToConfigFile = customConfigFileName.flatMap { Bundle.main.path(forResource: $0, ofType: "plist") } ?? Bundle.module.path(forResource: "isoconfig", ofType: "plist")
         guard let configFilePath = pathToConfigFile, let dataElementsScheme = NSDictionary(contentsOfFile: configFilePath) else {
             return []
         }

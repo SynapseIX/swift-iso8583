@@ -16,7 +16,14 @@ let package = Package(
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "Swift-ISO8583"
+            name: "Swift-ISO8583",
+            resources: [
+                .process("Resources/customisoconfig.plist"),
+                .process("Resources/customisoMTI.plist"),
+                .process("Resources/isoconfig.plist"),
+                .process("Resources/isodatatypes.plist"),
+                .process("Resources/isoMTI.plist")
+            ]
         ),
         .testTarget(
             name: "Swift-ISO8583Tests",

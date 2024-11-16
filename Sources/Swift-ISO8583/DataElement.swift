@@ -8,16 +8,16 @@
 import Foundation
 
 /// Represents a data element that is part of a ISO-8583.
-struct DataElement {
+public struct DataElement {
     
     /// The data element name.
-    let name: String
+    public let name: String
     /// The data element value.
-    let value: String
+    public let value: String
     /// The data element data type.
-    let dataType: String
+    public let dataType: String
     /// The data element value length.
-    let length: String
+    public let length: String
     
     /// Initializes a new `DataElement` instance
     /// - Parameters:
@@ -26,7 +26,7 @@ struct DataElement {
     ///   - dataType: The data element data type.
     ///   - length: The data element value length.
     ///   - customConfigFileName: The custom configuration file name used for custom ISO-8583 messages.
-    init?(
+    public init?(
         name: String,
         value: String,
         dataType: String,
@@ -48,7 +48,7 @@ struct DataElement {
             return nil
         }
         
-        let pathToConfigFile = customConfigFileName.flatMap { Bundle.main.path(forResource: $0, ofType: "plist") } ?? Bundle.main.path(forResource: "isoconfig", ofType: "plist")
+        let pathToConfigFile = customConfigFileName.flatMap { Bundle.main.path(forResource: $0, ofType: "plist") } ?? Bundle.module.path(forResource: "isoconfig", ofType: "plist")
         guard let configFilePath = pathToConfigFile, let dataElementsScheme = NSDictionary(contentsOfFile: configFilePath) else {
             print("Invalid configuration file.")
             return nil
@@ -79,7 +79,7 @@ struct DataElement {
     
     /// Cleans up a value.
     /// - Returns: A cleaned-up value.
-    func cleanValue() -> String? {
+    public func cleanValue() -> String? {
         if length.contains(".") {
             switch length.count {
             case 2:
@@ -109,8 +109,8 @@ extension DataElement {
     /// Validates the data type specified in the data types configuration file.
     /// - Parameter dataType: The data type to be validated.
     /// - Returns: `true` if the data type is valid.
-    static func isValidDataType(_ dataType: String) -> Bool {
-        guard let path = Bundle.main.path(forResource: "isodatatypes", ofType: "plist"),
+    public static func isValidDataType(_ dataType: String) -> Bool {
+        guard let path = Bundle.module.path(forResource: "isodatatypes", ofType: "plist"),
               let validDataTypes = NSArray(contentsOfFile: path) as? [String] else {
             return false
         }
@@ -122,7 +122,7 @@ extension DataElement {
     ///   - value: The value.
     ///   - dataType: The data type.
     /// - Returns: `true` if the value is compliant with its associated data type.
-    static func isValueCompliant(_ value: String, with dataType: String) -> Bool {
+    public static func isValueCompliant(_ value: String, with dataType: String) -> Bool {
         let patterns: [String: String] = [
             "a": "^[A-Za-z\\s]+$",
             "n": "^[0-9\\.]+$",
@@ -148,7 +148,7 @@ extension DataElement {
     ///   - value: The value that needs to be adjusted.
     ///   - length: The maximum length.
     /// - Returns: The adjusted length and value as a single string.
-    static func adjustValueForVariableLength(value: String, length: String) -> String? {
+    public static func adjustValueForVariableLength(value: String, length: String) -> String? {
         guard length.contains("."), let maxLength = Int(length.dropFirst(length.count / 2)) else {
             return value.count == Int(length) ? value : nil
         }
