@@ -67,7 +67,7 @@ struct DataElement {
         self.name = name
         self.dataType = dataType
         self.length = elementLength
-
+        
         if (dataType == "an" || dataType == "ans"), length.range(of: "\\.") == nil {
             self.value = ISOHelper.fillStringWithBlankSpaces(value, fieldLength: length) ?? value
         } else if dataType == "n", length.range(of: "\\.") == nil {
@@ -152,12 +152,12 @@ extension DataElement {
         guard length.contains("."), let maxLength = Int(length.dropFirst(length.count / 2)) else {
             return value.count == Int(length) ? value : nil
         }
-
+        
         guard value.count <= maxLength else {
             print("The value length \(value.count) is greater than the provided length \(length).")
             return nil
         }
-
+        
         let lengthDigits = length.count / 2
         let formattedLength = String(format: "%0\(lengthDigits)d", value.count)
         return formattedLength + value
