@@ -10,13 +10,13 @@ import Foundation
 /// Represents the bitmap that determines which data elements are present on the ISO-8583 message.
 struct Bitmap {
     /// The raw string value of the ISO-8583 message.
-    var rawValue: String
+    let rawValue: String
     /// Determines if the message has a secondary bitmap.
-    var hasSecondaryBitmap: Bool
+    let hasSecondaryBitmap: Bool
     ///  Determines if it is a BIN bitmap.
-    var isBinary: Bool
+    let isBinary: Bool
     /// An array representation of a BIN bitmap.
-    var binaryBitmap: [String]
+    let binaryBitmap: [String]
     
     /// Initializes a new bitmap instance from a string containing a BIN value.
     /// - Parameter binaryString: The BIN bitmap string.

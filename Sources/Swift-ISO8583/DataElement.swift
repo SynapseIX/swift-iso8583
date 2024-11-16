@@ -11,13 +11,13 @@ import Foundation
 struct DataElement {
     
     /// The data element name.
-    var name: String
+    let name: String
     /// The data element value.
-    var value: String
+    let value: String
     /// The data element data type.
-    var dataType: String
+    let dataType: String
     /// The data element value length.
-    var length: String
+    let length: String
     
     /// Initializes a new `DataElement` instance
     /// - Parameters:
